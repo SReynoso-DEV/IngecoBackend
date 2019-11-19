@@ -4,6 +4,7 @@ import { EmpleadoEntity } from '../empleado/empleado.entity';
 import { Repository } from 'typeorm';
 import { ServicioEntity } from '../servicio/servicio.entity';
 import { ReciboHonorarioEntity } from './recibohonorario.entity';
+import { regExpLiteral } from '@babel/types';
 
 @Injectable()
 export class RecibohonorarioService {
@@ -33,6 +34,7 @@ export class RecibohonorarioService {
     {
         let res;
         let err;
+        var dateFormat = require('dateformat');
         let today = new Date();
         
 
@@ -42,9 +44,11 @@ export class RecibohonorarioService {
             let empleado = await this.empleadoRepository.findOne({id:servicioid});
             if (empleado == null){throw 'empleado inexistente';}
             if (servicio == null){throw 'servicio inexistente';}
+            if (NewRH.submonto < 100) {throw 'el monto minimo por recibo por honorario es 100';}
             NewRH.empleado = empleado;
             NewRH.servicio = servicio;
-            NewRH.fechaEmision = today;
+
+            
             if (NewRH.submonto > 1500)
             {
                 NewRH.retencion = NewRH.submonto * 0.18;                
@@ -77,8 +81,10 @@ export class RecibohonorarioService {
         let res;
         let err;
         let rh = await this.reciboHonorarioRepository.findOne({id:id});
+        var dateFormat = require('dateformat');
         try {
             if (rh == null) {throw 'El Recibo por honorario no existe';}
+            if (editedRH.fechaPago != null) {editedRH.estado = "Pagado";}            
             res = await this.reciboHonorarioRepository.update(rh,editedRH);
         } catch (error) {
             err = error;
