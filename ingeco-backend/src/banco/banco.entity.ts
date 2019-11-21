@@ -1,6 +1,6 @@
-import { PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, Entity, OneToOne } from "typeorm";
+import { PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, Entity, OneToOne, OneToMany } from "typeorm";
 import { TasaEntity } from "../tasa/tasa.entity"
-import { EleccionEntity } from "src/eleccion/eleccion.entity";
+import { EleccionEntity } from "../eleccion/eleccion.entity";
 
 @Entity('banco')
 export class BancoEntity{
@@ -29,6 +29,6 @@ export class BancoEntity{
     @ManyToOne(type=>TasaEntity, tasa => tasa.tasaBanco, {onDelete: 'CASCADE'})
     tasa: TasaEntity;
 
-    @OneToOne(type => EleccionEntity, eleccionBanco => eleccionBanco.banco)
+    @OneToMany(type => EleccionEntity, eleccionBanco => eleccionBanco.banco)
     eleccionBanco : EleccionEntity[];
 }

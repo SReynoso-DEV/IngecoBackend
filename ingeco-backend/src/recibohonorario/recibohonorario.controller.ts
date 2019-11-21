@@ -20,8 +20,8 @@ export class RecibohonorarioController {
     }
 
     @Post()
-    public async createRH(@Res() res, @Body() newRH : any, @Body('empleadoid') empleadoid, @Body('servicioid') servicioid){
-        const result = await this.reciboHonorarioService.createRH(newRH, empleadoid, servicioid);
+    public async createRH(@Res() res, @Body() newRH : any, @Body('empleadoid') empleadoid, @Body('servicioid') servicioid, @Req() req){
+        const result = await this.reciboHonorarioService.createRH(newRH, empleadoid, servicioid,req.payload.id);
         res.status(HttpStatus.CREATED).json(result);
     }
 

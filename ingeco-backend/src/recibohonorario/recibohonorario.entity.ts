@@ -1,6 +1,7 @@
 import { PrimaryGeneratedColumn, Column, ManyToOne, Entity } from "typeorm";
 import { EmpleadoEntity } from "../empleado/empleado.entity";
 import { ServicioEntity } from "../servicio/servicio.entity";
+import { CarteraEntity } from "src/cartera/cartera.entity";
 
 @Entity('recibohonorario')
 export class ReciboHonorarioEntity {
@@ -39,8 +40,12 @@ export class ReciboHonorarioEntity {
     montodesc: number
 
     @ManyToOne(type => EmpleadoEntity, empleado => empleado.empleadoRH, {onDelete: 'CASCADE'})
-    empleado : EmpleadoEntity;
+    empleado : EmpleadoEntity
 
     @ManyToOne(type => ServicioEntity, servicio => servicio.servicioRH, {onDelete: 'CASCADE'})
-    servicio : ServicioEntity;
+    servicio : ServicioEntity
+
+    @ManyToOne(type => CarteraEntity, cartera => cartera.carteraRH, {onDelete: 'CASCADE'})
+    cartera: CarteraEntity
+
 }

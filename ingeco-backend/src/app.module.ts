@@ -7,6 +7,7 @@ import { Connection } from "typeorm";
 import { AuthModule } from './auth/auth.module';
 import { TasaModule } from './tasa/tasa.module';
 import { EleccionModule } from './eleccion/eleccion.module';
+import { CarteraModule } from './cartera/cartera.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot(), AuthModule],

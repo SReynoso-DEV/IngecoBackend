@@ -10,10 +10,11 @@ import { RecibohonorarioModule } from 'src/recibohonorario/recibohonorario.modul
 import { TasaModule } from 'src/tasa/tasa.module';
 import { BancoModule } from 'src/banco/banco.module';
 import { EleccionModule } from 'src/eleccion/eleccion.module';
+import { CarteraModule } from 'src/cartera/cartera.module';
 
 @Module({
   controllers: [AuthController],
   providers: [AuthService, LoginService, SignUpService, AuthHelper],
-  imports: [EmpleadoModule, ServicioModule, RecibohonorarioModule,TasaModule, BancoModule, EleccionModule]
+  imports: [EmpleadoModule, ServicioModule, RecibohonorarioModule,TasaModule, BancoModule, EleccionModule,CarteraModule]
 })
 export class AuthModule {}

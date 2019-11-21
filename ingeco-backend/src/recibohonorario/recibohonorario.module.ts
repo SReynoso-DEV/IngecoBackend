@@ -10,12 +10,17 @@ import { EmpleadoController } from '../empleado/empleado.controller';
 import { ServicioService } from '../servicio/servicio.service';
 import { EmpleadoService } from '../empleado/empleado.service';
 import { AuthMiddleware } from '../middlewares/auth.middleware';
+import { CarteraEntity } from '../cartera/cartera.entity';
+import { CarteraController } from '../cartera/cartera.controller';
+import { CarteraService } from '../cartera/cartera.service';
+import { CarteraModule } from '../cartera/cartera.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ReciboHonorarioEntity, ServicioEntity, EmpleadoEntity])],
-  controllers: [RecibohonorarioController,ServicioController, EmpleadoController],
-  providers: [RecibohonorarioService,ServicioService, EmpleadoService],
-  exports: [RecibohonorarioService,ServicioService, EmpleadoService, RecibohonorarioModule]
+  imports: [TypeOrmModule.forFeature([ReciboHonorarioEntity, ServicioEntity, EmpleadoEntity, CarteraEntity]), CarteraModule],
+  controllers: [RecibohonorarioController,ServicioController, EmpleadoController, CarteraController],
+  providers: [RecibohonorarioService,ServicioService, EmpleadoService, CarteraService],
+  exports: [RecibohonorarioService,ServicioService, EmpleadoService, RecibohonorarioModule, CarteraModule
+  ]
 })
 export class RecibohonorarioModule implements NestModule{
   configure(consumer: MiddlewareConsumer) {
