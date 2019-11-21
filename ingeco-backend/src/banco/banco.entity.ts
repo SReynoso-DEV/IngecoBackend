@@ -10,6 +10,9 @@ export class BancoEntity{
     @Column()
     nombre: string
 
+    @Column({type: 'decimal', precision: 6, scale: 2})
+    comision: number
+
     @Column()
     telefono: number
 

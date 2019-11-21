@@ -1,5 +1,5 @@
 import { PrimaryGeneratedColumn, Column, OneToMany, Entity } from "typeorm";
-import { BancoEntity } from "src/banco/banco.entity";
+import { BancoEntity } from "../banco/banco.entity";
 
 @Entity('tasa')
 export class TasaEntity {
@@ -10,8 +10,11 @@ export class TasaEntity {
     @Column()
     tipo: string
 
+    @Column({nullable : true})
+    tnominal: number
+
     @Column({nullable: true})
-    capitalizacion: string
+    tcapitalizacion: number
 
     @Column({type: "decimal", precision: 10, scale: 7})
     porcentaje : number

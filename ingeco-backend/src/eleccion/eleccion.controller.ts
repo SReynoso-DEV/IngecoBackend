@@ -20,6 +20,8 @@ export class EleccionController {
         res.status(HttpStatus.OK).json(eleccion);
     }
 
+
+
     @Post()
     public async createEleccion(@Res() res, @Body() newEL : EleccionEntity, @Body('bancoid') bancoid, @Req() req){
         const result = await this.eleccionService.createEleccion(newEL,bancoid,req.payload.id);
@@ -29,6 +31,11 @@ export class EleccionController {
     @Put(':id')
     public async updateEleccion(@Res() res, @Body() EL : EleccionEntity, @Param('id') id){
         const result = await this.eleccionService.editEleccion(EL,id);
+        res.status(HttpStatus.ACCEPTED).json(result);
+    }
+    @Put('trea/:id')
+    public async calcularTrea(@Res() res, @Body() EL : EleccionEntity, @Param('id') id){
+        const result = await this.eleccionService.calcular(EL,id);
         res.status(HttpStatus.ACCEPTED).json(result);
     }
 

@@ -26,6 +26,29 @@ export class TasaService {
         return res;
     }
 
+    public async updateTasa(upT : TasaEntity, id: number){
+        
+        let res;
+        let err;
+        let rh = await this.tasaRepository.findOne({id:id});
+        try {
+            if (rh == null) {throw 'La tasa no existe';}     
+            res = await this.tasaRepository.update(rh,upT);
+        } catch (error) {
+            err = error;
+            console.log(err);
+            throw err;
+        }
+
+        return (
+            err || {
+                message: 'Updated',
+                Updated: true,
+                id: res.id,
+            }
+
+        )
+    }
   
     public async deleteTasa(id: number){
         let res;

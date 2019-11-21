@@ -1,4 +1,4 @@
-import { Controller, Get, Res, HttpStatus, Param, Post, Body, Delete } from '@nestjs/common';
+import { Controller, Get, Res, HttpStatus, Param, Post, Body, Delete, Put } from '@nestjs/common';
 import { TasaService } from './tasa.service';
 import { TasaEntity } from './tasa.entity';
 
@@ -22,6 +22,12 @@ export class TasaController {
     @Get(':id')
     public async getTasa(@Res() res, @Param('id') id){
         const tasa = await this.tasaService.getTasaByID(id);
+        res.status(HttpStatus.OK).json(tasa);
+    }
+
+    @Put(':id')
+    public async updateTasa(@Res() res, @Body() upT : TasaEntity, @Param('id') id){
+        const tasa = await this.tasaService.updateTasa(upT, id);
         res.status(HttpStatus.OK).json(tasa);
     }
 
