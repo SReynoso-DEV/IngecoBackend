@@ -29,6 +29,15 @@ export class ReciboHonorarioEntity {
     @Column({type : "datetime", nullable: true})
     fechaPago : Date
 
+    @Column({type: 'decimal', precision: 10, scale: 7, default: 0})
+    tcea: number
+
+    @Column({type : "datetime", nullable: true})
+    fechaDescuento : Date
+
+    @Column({type: 'decimal', precision: 6, scale: 2, default: 0})
+    montodesc: number
+
     @ManyToOne(type => EmpleadoEntity, empleado => empleado.empleadoRH, {onDelete: 'CASCADE'})
     empleado : EmpleadoEntity;
 

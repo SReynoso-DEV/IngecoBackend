@@ -26,5 +26,4 @@ export class ServicioController {
         res.status(HttpStatus.CREATED).json(result);
     }
 
-
 }

@@ -1,6 +1,7 @@
 import {  } from "@nestjs/typeorm";
 import { Entity,PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
 import { ReciboHonorarioEntity } from "src/recibohonorario/recibohonorario.entity";
+import { EleccionEntity } from "src/eleccion/eleccion.entity";
 
 @Entity('empleado')
 export class EmpleadoEntity {
@@ -36,5 +37,8 @@ export class EmpleadoEntity {
 
     @OneToMany(type => ReciboHonorarioEntity, empleadoRH => empleadoRH.empleado)
     empleadoRH : EmpleadoEntity[];
+
+    @OneToMany(type=>EleccionEntity, eleccionEmpleado => eleccionEmpleado.empleado)
+    eleccionEmpleado : EleccionEntity[];
 
 }

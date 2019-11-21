@@ -19,7 +19,7 @@ export class ServicioService {
     {
         let res = await this.servicioRepository.findOne({id : id});
         if (res == null){
-            throw 'Command doesnt exist';
+            throw 'Servicio doesnt exist';
         }
     }
 
